@@ -42,13 +42,10 @@ RUN cd /tmp && \
 RUN npm install -g mocha
 
 COPY package.json /src/package.json
-
-RUN cd /src  && \
-    npm cache clean && \
-    rm node_modules -rf && \
-    npm install yeoman-generator yeoman-test bluebird ramda
-
+COPY node_modules /src/node_modules
 COPY test.js /src/test.js
 
+ENV TERM screen
+
 # Default CMD
-CMD mocha /src/test.js --reporter json-stream | fzf -1 --margin 5%,5%
+CMD echo "hello world"
